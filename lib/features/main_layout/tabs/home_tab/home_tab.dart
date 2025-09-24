@@ -1,12 +1,103 @@
+import 'package:evently_app/core/resourses/colors_manager.dart';
+import 'package:evently_app/core/widgets/custom_tab_bar.dart';
+import 'package:evently_app/features/main_layout/tabs/home_tab/event_item.dart';
+import 'package:evently_app/models/category_model.dart';
+import 'package:evently_app/models/event_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
+    return Column(
+      children: [
+        Container(
+          padding: REdgeInsets.only(top: 50),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: ColorsManager.blue,
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.r)),
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: REdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Welcome Back ✨',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        SizedBox(height: 8.h),
+                        Text(
+                          'Karim Gamal',
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
+                        SizedBox(height: 8.h),
+                        Row(
+                          children: [
+                            Icon(Icons.location_on, color: ColorsManager.white),
+                            SizedBox(width: 4.w),
+                            Text(
+                              'Cairo, Egypt',
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.light_mode, color: ColorsManager.white),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'EN',
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              CustomTabBar(
+                selectedBgColor: ColorsManager.white,
+                selectedFgColor: ColorsManager.blue,
+                unSelectedBgColor: Colors.transparent,
+                unSelectedFgColor: ColorsManager.ofWhite,
+                categories: CategoryModel.categoriesWithAll,
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: ListView.separated(
+            padding: EdgeInsets.only(top: 16),
+            itemBuilder: (context, index) => EventItem(
+              event: EventModel(
+                category: CategoryModel.categoriesWithAll[3],
+                title: 'This is a Birthday Party ',
+                description: 'This is a Birthday Party ',
+                dateTime: DateTime.now(),
+                timeOfDay: TimeOfDay.now(),
+              ),
+            ),
+            separatorBuilder: (context, index) => SizedBox(height: 16.h),
+            itemCount: 10,
+          ),
+        ),
+      ],
     );
   }
 }

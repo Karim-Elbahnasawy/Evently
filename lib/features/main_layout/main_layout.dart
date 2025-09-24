@@ -12,12 +12,7 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
-  final List<Widget> tabs = [
-  HomeTab(), 
-  MapTab(),
-  FavouriteTab(), 
-  ProfileTab(),
-  ];
+  final List<Widget> tabs = [HomeTab(), MapTab(), FavouriteTab(), ProfileTab()];
   int _selectedIndex = 0;
 
   @override
@@ -30,18 +25,15 @@ class _MainLayoutState extends State<MainLayout> {
       floatingActionButton: _buildFad(),
     );
   }
-
   FloatingActionButton _buildFad() {
     return FloatingActionButton(onPressed: () {}, child: Icon(Icons.add));
   }
-
   BottomAppBar _buildNavBar() {
     return BottomAppBar(
       notchMargin: 8,
       child: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onTab,
-
         items: [
           BottomNavigationBarItem(
             icon: Icon(_selectedIndex == 0 ? Icons.home : Icons.home_outlined),

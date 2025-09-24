@@ -17,26 +17,22 @@ abstract class ThemeManager {
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Colors.transparent,
-          elevation: 0,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: ColorsManager.white,
-          unselectedItemColor: ColorsManager.white,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: ColorsManager.white,
+      unselectedItemColor: ColorsManager.white,
     ),
     bottomAppBarTheme: BottomAppBarTheme(
-       color: ColorsManager.blue,
-   shape: CircularNotchedRectangle(
-    
-  
-   ),
+      color: ColorsManager.blue,
+      shape: CircularNotchedRectangle(),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: ColorsManager.blue,
       foregroundColor: ColorsManager.white,
-        
-        shape: StadiumBorder(
-          side: BorderSide(color: ColorsManager.white,width: 4.w)
-        ),
+      shape: StadiumBorder(
+        side: BorderSide(color: ColorsManager.white, width: 4.w),
+      ),
     ),
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: ColorsManager.grey,
@@ -79,6 +75,21 @@ abstract class ThemeManager {
       ),
     ),
     textTheme: TextTheme(
+      titleSmall: GoogleFonts.inter(
+        color: ColorsManager.black,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w700,
+      ),
+      displaySmall: GoogleFonts.inter(
+        color: ColorsManager.blue,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w700,
+      ),
+      displayMedium: GoogleFonts.inter(
+        color: ColorsManager.blue,
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w700,
+      ),
       bodySmall: GoogleFonts.inter(
         color: ColorsManager.black,
         fontSize: 16.sp,
@@ -88,6 +99,21 @@ abstract class ThemeManager {
         fontSize: 20.sp,
         fontWeight: FontWeight.w500,
         color: ColorsManager.white,
+      ),
+      headlineSmall: GoogleFonts.inter(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: ColorsManager.white,
+      ),
+      headlineLarge: GoogleFonts.inter(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w700,
+        color: ColorsManager.white,
+      ),
+      headlineMedium: GoogleFonts.inter(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w700,
+        color: ColorsManager.blue,
       ),
       titleMedium: GoogleFonts.inter(
         color: ColorsManager.blue,
