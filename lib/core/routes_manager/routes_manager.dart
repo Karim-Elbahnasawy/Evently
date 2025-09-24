@@ -2,6 +2,7 @@ import 'package:evently_app/core/routes_manager/app_routes.dart';
 import 'package:evently_app/features/auth/forget_password/forget_password.dart';
 import 'package:evently_app/features/auth/login/login.dart';
 import 'package:evently_app/features/auth/register/register.dart';
+import 'package:evently_app/features/main_layout/main_layout.dart';
 import 'package:flutter/material.dart';
 
 abstract class RoutesManager {
@@ -19,6 +20,9 @@ abstract class RoutesManager {
         {
           return MaterialPageRoute(builder: (context) => ForgetPassword());
         }
+      case AppRoutes.mainLayout:{
+        return MaterialPageRoute(builder: (context)=> MainLayout());
+      }
     }
     return null;
   }
