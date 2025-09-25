@@ -5,8 +5,8 @@ import 'package:evently_app/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class EventItem extends StatelessWidget {
-  const EventItem({super.key, required this.event});
+class CustomEventItem extends StatelessWidget {
+  const CustomEventItem({super.key, required this.event});
   final EventModel event;
 
   @override

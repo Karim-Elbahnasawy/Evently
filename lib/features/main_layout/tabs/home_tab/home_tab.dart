@@ -1,6 +1,6 @@
 import 'package:evently_app/core/resourses/colors_manager.dart';
 import 'package:evently_app/core/widgets/custom_tab_bar.dart';
-import 'package:evently_app/features/main_layout/tabs/home_tab/event_item.dart';
+import 'package:evently_app/core/widgets/custom_event_item.dart';
 import 'package:evently_app/models/category_model.dart';
 import 'package:evently_app/models/event_model.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class HomeTab extends StatelessWidget {
           padding: REdgeInsets.only(top: 50),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: ColorsManager.blue,
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16.r)),
           ),
           child: Column(
@@ -41,7 +41,10 @@ class HomeTab extends StatelessWidget {
                         SizedBox(height: 8.h),
                         Row(
                           children: [
-                            Icon(Icons.location_on, color: ColorsManager.white),
+                            Icon(
+                              Icons.location_on,
+                              color: ColorsManager.ofWhite,
+                            ),
                             SizedBox(width: 4.w),
                             Text(
                               'Cairo, Egypt',
@@ -54,11 +57,15 @@ class HomeTab extends StatelessWidget {
                     Spacer(),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.light_mode, color: ColorsManager.white),
+                      icon: Icon(
+                        Icons.light_mode,
+                        color: ColorsManager.ofWhite,
+                      ),
                     ),
                     GestureDetector(
                       onTap: () {},
                       child: Card(
+                        color: ColorsManager.ofWhite,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
@@ -75,7 +82,7 @@ class HomeTab extends StatelessWidget {
                 selectedBgColor: ColorsManager.white,
                 selectedFgColor: ColorsManager.blue,
                 unSelectedBgColor: Colors.transparent,
-                unSelectedFgColor: ColorsManager.ofWhite,
+                unSelectedFgColor: ColorsManager.whiteBlue,
                 categories: CategoryModel.categoriesWithAll,
               ),
             ],
@@ -84,7 +91,7 @@ class HomeTab extends StatelessWidget {
         Expanded(
           child: ListView.separated(
             padding: EdgeInsets.only(top: 16),
-            itemBuilder: (context, index) => EventItem(
+            itemBuilder: (context, index) => CustomEventItem(
               event: EventModel(
                 category: CategoryModel.categoriesWithAll[3],
                 title: 'This is a Birthday Party ',

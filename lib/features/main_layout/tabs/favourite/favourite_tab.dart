@@ -1,5 +1,5 @@
 import 'package:evently_app/core/resourses/colors_manager.dart';
-import 'package:evently_app/features/main_layout/tabs/home_tab/event_item.dart';
+import 'package:evently_app/core/widgets/custom_event_item.dart';
 import 'package:evently_app/models/category_model.dart';
 import 'package:evently_app/models/event_model.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class FavouriteTab extends StatelessWidget {
           Expanded(
             child: ListView.separated(
               itemCount: 10,
-              itemBuilder: (context, index) => EventItem(
+              itemBuilder: (context, index) => CustomEventItem(
                 event: EventModel(
                   category: CategoryModel.categoriesWithAll[3],
                   title: 'This is a Birthday Party ',

@@ -44,7 +44,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text('Register')),
       body: SingleChildScrollView(
         child: Padding(

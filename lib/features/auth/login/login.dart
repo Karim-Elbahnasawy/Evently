@@ -39,7 +39,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -128,7 +128,7 @@ class _LoginState extends State<Login> {
                           ),
                           Text(
                             'Or',
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: Theme.of(context).textTheme.displayLarge,
                           ),
                           Expanded(
                             child: Divider(

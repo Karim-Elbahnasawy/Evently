@@ -37,7 +37,7 @@ class DropDownItem extends StatelessWidget {
                   style: Theme.of(context).textTheme.displayMedium,
                 ),
                 DropdownButton(
-                  dropdownColor: ColorsManager.ofWhite,
+                  dropdownColor: ColorsManager.whiteBlue,
                   iconSize: 32,
                   iconEnabledColor: ColorsManager.blue,
                   underline: SizedBox(),
@@ -46,7 +46,7 @@ class DropDownItem extends StatelessWidget {
                       value: value,
                       child: Text(
                         value,
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
                     );
                   }).toList(),
