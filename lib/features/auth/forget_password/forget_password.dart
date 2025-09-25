@@ -3,6 +3,7 @@ import 'package:evently_app/core/resourses/colors_manager.dart';
 import 'package:evently_app/core/resourses/validators.dart';
 import 'package:evently_app/core/widgets/custom_elvated_button.dart';
 import 'package:evently_app/core/widgets/custom_text_form_field.dart';
+import 'package:evently_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,10 +29,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Forget Password'),
+        title: Text(appLocalizations.forget_password_title),
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
@@ -50,12 +53,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             CustomTextFormField(
               validator: Validators.validateEmail,
               controller: _emailController,
-              labelText: 'Email',
+              labelText: appLocalizations.email,
               prefixIcon: Icons.email,
               keyboardType: TextInputType.emailAddress,
             ),
             SizedBox(height: 24.h),
-            CustomElvatedButton(onPressed: () {}, text: 'Reset Password'),
+            CustomElvatedButton(
+              onPressed: () {},
+              text: appLocalizations.reset_password,
+            ),
           ],
         ),
       ),

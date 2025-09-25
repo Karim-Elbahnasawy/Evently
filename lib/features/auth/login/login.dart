@@ -5,6 +5,7 @@ import 'package:evently_app/core/routes_manager/app_routes.dart';
 import 'package:evently_app/core/widgets/custom_elvated_button.dart';
 import 'package:evently_app/core/widgets/custom_text_form_field.dart';
 import 'package:evently_app/core/widgets/cutom_text_button.dart';
+import 'package:evently_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,6 +39,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -60,7 +62,7 @@ class _LoginState extends State<Login> {
                       CustomTextFormField(
                         validator: Validators.validateEmail,
                         controller: _emailController,
-                        labelText: 'Email',
+                        labelText: appLocalizations.email,
                         prefixIcon: Icons.email,
                         keyboardType: TextInputType.emailAddress,
                       ),
@@ -68,7 +70,7 @@ class _LoginState extends State<Login> {
                       CustomTextFormField(
                         validator: Validators.validatePassword,
                         controller: _passwordController,
-                        labelText: 'Password',
+                        labelText: appLocalizations.password,
                         prefixIcon: Icons.lock,
                         keyboardType: TextInputType.visiblePassword,
                         suffixIcon: IconButton(
@@ -85,7 +87,7 @@ class _LoginState extends State<Login> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: CustomTextButton(
-                          text: 'Forget Password?',
+                          text: appLocalizations.forget_password,
                           onTap: () {
                             Navigator.pushNamed(
                               context,
@@ -95,17 +97,23 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       SizedBox(height: 24.h),
-                      CustomElvatedButton(onPressed: _login, text: 'Login'),
+                      CustomElvatedButton(
+                        onPressed: _login,
+                        text: appLocalizations.login,
+                      ),
                       SizedBox(height: 24.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Don’t Have Account ? ',
-                            style: Theme.of(context).textTheme.bodySmall,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text(
+                              appLocalizations.donot_have_account,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
                           ),
                           CustomTextButton(
-                            text: 'Create Account',
+                            text: appLocalizations.create_account,
                             onTap: () {
                               Navigator.pushReplacementNamed(
                                 context,
@@ -127,7 +135,7 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                           Text(
-                            'Or',
+                            appLocalizations.or,
                             style: Theme.of(context).textTheme.displayLarge,
                           ),
                           Expanded(
@@ -149,7 +157,7 @@ class _LoginState extends State<Login> {
                             SvgPicture.asset(ImageAssets.google),
                             SizedBox(width: 8.w),
                             Text(
-                              'Login With Google',
+                              appLocalizations.login_with_google,
                               style: Theme.of(context).textTheme.bodyMedium
                                   ?.copyWith(color: ColorsManager.blue),
                             ),

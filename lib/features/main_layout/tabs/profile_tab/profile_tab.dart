@@ -2,6 +2,7 @@ import 'package:evently_app/core/resourses/assets_manager.dart';
 import 'package:evently_app/core/resourses/colors_manager.dart';
 import 'package:evently_app/features/main_layout/tabs/profile_tab/drop_down_item.dart';
 import 'package:evently_app/features/main_layout/tabs/profile_tab/logout_button.dart';
+import 'package:evently_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,6 +11,7 @@ class ProfileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,15 +47,15 @@ class ProfileTab extends StatelessWidget {
         ),
         SizedBox(height: 24.h),
         DropDownItem(
-          label: 'Theme',
-          selectedItem: 'Light',
-          menuItems: ['Light', 'Dark'],
+          label: appLocalizations.theme,
+          selectedItem: appLocalizations.light,
+          menuItems: [appLocalizations.light, appLocalizations.dark],
         ),
         SizedBox(height: 16.h),
         DropDownItem(
-          label: 'Language',
+          label: appLocalizations.language,
           selectedItem: 'English',
-          menuItems: ['English', 'Arabic'],
+          menuItems: ['English', 'عربى'],
         ),
         Spacer(flex: 7),
         LogoutButton(),

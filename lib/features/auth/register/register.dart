@@ -4,6 +4,7 @@ import 'package:evently_app/core/routes_manager/app_routes.dart';
 import 'package:evently_app/core/widgets/custom_elvated_button.dart';
 import 'package:evently_app/core/widgets/custom_text_form_field.dart';
 import 'package:evently_app/core/widgets/cutom_text_button.dart';
+import 'package:evently_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -43,9 +44,10 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: Text('Register')),
+      appBar: AppBar(title: Text(appLocalizations.register)),
       body: SingleChildScrollView(
         child: Padding(
           padding: REdgeInsets.only(
@@ -65,7 +67,7 @@ class _RegisterState extends State<Register> {
                     CustomTextFormField(
                       controller: _nameController,
                       validator: Validators.validateName,
-                      labelText: 'Name',
+                      labelText: appLocalizations.name,
                       prefixIcon: Icons.person,
                       keyboardType: TextInputType.name,
                     ),
@@ -73,7 +75,7 @@ class _RegisterState extends State<Register> {
                     CustomTextFormField(
                       controller: _emailController,
                       validator: Validators.validateEmail,
-                      labelText: 'Email',
+                      labelText: appLocalizations.email,
                       prefixIcon: Icons.email,
                       keyboardType: TextInputType.emailAddress,
                     ),
@@ -81,7 +83,7 @@ class _RegisterState extends State<Register> {
                     CustomTextFormField(
                       controller: _passwordController,
                       validator: Validators.validatePassword,
-                      labelText: 'Password',
+                      labelText: appLocalizations.password,
                       prefixIcon: Icons.lock,
                       suffixIcon: IconButton(
                         onPressed: _onTogglePasswordIconClicked,
@@ -98,7 +100,7 @@ class _RegisterState extends State<Register> {
                     CustomTextFormField(
                       controller: _rePasswordController,
                       validator: Validators.validateRePassword,
-                      labelText: 'Re Password',
+                      labelText: appLocalizations.re_password,
                       prefixIcon: Icons.lock,
                       suffixIcon: IconButton(
                         onPressed: _onToggleRePasswordIconClicked,
@@ -114,18 +116,21 @@ class _RegisterState extends State<Register> {
                     SizedBox(height: 16.h),
                     CustomElvatedButton(
                       onPressed: _createAccount,
-                      text: 'Create Account',
+                      text: appLocalizations.create_account,
                     ),
                     SizedBox(height: 16.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Already Have Account ? ',
-                          style: Theme.of(context).textTheme.bodySmall,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Text(
+                            appLocalizations.already_have_account,
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
                         ),
                         CustomTextButton(
-                          text: 'Login',
+                          text: appLocalizations.login,
                           onTap: () {
                             Navigator.pushReplacementNamed(
                               context,

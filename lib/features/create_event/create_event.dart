@@ -4,6 +4,7 @@ import 'package:evently_app/core/widgets/custom_elvated_button.dart';
 import 'package:evently_app/core/widgets/custom_tab_bar.dart';
 import 'package:evently_app/core/widgets/custom_text_form_field.dart';
 import 'package:evently_app/core/widgets/cutom_text_button.dart';
+import 'package:evently_app/l10n/app_localizations.dart';
 import 'package:evently_app/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ class CreateEvent extends StatefulWidget {
 class _CreateEventState extends State<CreateEvent> {
   late final TextEditingController _titleContoller;
   late final TextEditingController _descriptionContoller;
+
   @override
   void initState() {
     super.initState();
@@ -34,8 +36,9 @@ class _CreateEventState extends State<CreateEvent> {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(title: Text('Create Event')),
+      appBar: AppBar(title: Text(appLocalizations.create_event)),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SingleChildScrollView(
@@ -52,22 +55,28 @@ class _CreateEventState extends State<CreateEvent> {
                 selectedFgColor: ColorsManager.white,
                 unSelectedBgColor: Colors.transparent,
                 unSelectedFgColor: ColorsManager.blue,
-                categories: CategoryModel.categories,
+                categories: CategoryModel.getcategories(context),
               ),
               SizedBox(height: 8.h),
-              Text('Title', style: Theme.of(context).textTheme.bodySmall),
+              Text(
+                appLocalizations.title,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
               SizedBox(height: 8.h),
               CustomTextFormField(
-                hintText: 'Event Title',
+                hintText: appLocalizations.event_title,
                 controller: _titleContoller,
                 prefixIcon: Icons.edit_note_outlined,
               ),
               SizedBox(height: 16.h),
-              Text('Description', style: Theme.of(context).textTheme.bodySmall),
+              Text(
+                appLocalizations.description,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
               SizedBox(height: 8.h),
               CustomTextFormField(
                 lines: 5,
-                hintText: 'Event Description',
+                hintText: appLocalizations.event_description,
                 controller: _descriptionContoller,
               ),
               SizedBox(height: 16.h),
@@ -76,12 +85,12 @@ class _CreateEventState extends State<CreateEvent> {
                   Icon(Icons.date_range),
                   SizedBox(width: 8.w),
                   Text(
-                    'Event Date',
+                    appLocalizations.event_date,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Spacer(),
                   CustomTextButton(
-                    text: 'Choose Date',
+                    text: appLocalizations.choose_date,
                     onTap: () {
                       showDatePicker(
                         context: context,
@@ -98,12 +107,12 @@ class _CreateEventState extends State<CreateEvent> {
                   Icon(Icons.timer_outlined),
                   SizedBox(width: 8.w),
                   Text(
-                    'Event Time',
+                    appLocalizations.event_time,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Spacer(),
                   CustomTextButton(
-                    text: 'Choose Time',
+                    text: appLocalizations.choose_time,
                     onTap: () {
                       showTimePicker(
                         context: context,
@@ -115,7 +124,10 @@ class _CreateEventState extends State<CreateEvent> {
               ),
               // Spacer(flex: 6),
               SizedBox(height: 16.h),
-              Text('Location', style: Theme.of(context).textTheme.bodySmall),
+              Text(
+                appLocalizations.location,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
               SizedBox(height: 8.h),
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
@@ -142,7 +154,7 @@ class _CreateEventState extends State<CreateEvent> {
                         ),
                         SizedBox(width: 8.w),
                         Text(
-                          'Choose Event Location',
+                          appLocalizations.choose_event_location,
                           style: Theme.of(context).textTheme.displayLarge,
                         ),
                       ],
@@ -151,7 +163,10 @@ class _CreateEventState extends State<CreateEvent> {
                 ),
               ),
               SizedBox(height: 16.h),
-              CustomElvatedButton(onPressed: () {}, text: 'Add Event'),
+              CustomElvatedButton(
+                onPressed: () {},
+                text: appLocalizations.add_event,
+              ),
               SizedBox(height: 22.h),
             ],
           ),

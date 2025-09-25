@@ -1,6 +1,7 @@
 import 'package:evently_app/core/resourses/colors_manager.dart';
 import 'package:evently_app/core/widgets/custom_tab_bar.dart';
 import 'package:evently_app/core/widgets/custom_event_item.dart';
+import 'package:evently_app/l10n/app_localizations.dart';
 import 'package:evently_app/models/category_model.dart';
 import 'package:evently_app/models/event_model.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Column(
       children: [
         Container(
@@ -30,7 +32,7 @@ class HomeTab extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Welcome Back ✨',
+                          '${appLocalizations.welcome_back} ✨',
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         SizedBox(height: 8.h),
@@ -83,7 +85,7 @@ class HomeTab extends StatelessWidget {
                 selectedFgColor: ColorsManager.blue,
                 unSelectedBgColor: Colors.transparent,
                 unSelectedFgColor: ColorsManager.whiteBlue,
-                categories: CategoryModel.categoriesWithAll,
+                categories: CategoryModel.getcategoriesWithAll(context),
               ),
             ],
           ),
@@ -93,7 +95,7 @@ class HomeTab extends StatelessWidget {
             padding: EdgeInsets.only(top: 16),
             itemBuilder: (context, index) => CustomEventItem(
               event: EventModel(
-                category: CategoryModel.categoriesWithAll[3],
+                category: CategoryModel.getcategoriesWithAll(context)[3],
                 title: 'This is a Birthday Party ',
                 description: 'This is a Birthday Party ',
                 dateTime: DateTime.now(),

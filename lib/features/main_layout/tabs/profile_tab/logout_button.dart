@@ -1,4 +1,5 @@
 import 'package:evently_app/core/resourses/colors_manager.dart';
+import 'package:evently_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,6 +8,7 @@ class LogoutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Padding(
       padding: REdgeInsets.symmetric(horizontal: 16),
       child: ElevatedButton(
@@ -24,7 +26,7 @@ class LogoutButton extends StatelessWidget {
           children: [
             Icon(Icons.logout_outlined),
             SizedBox(width: 8.w),
-            Text('Logout'),
+            Text(appLocalizations.logout),
           ],
         ),
       ),
