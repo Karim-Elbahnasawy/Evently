@@ -1,3 +1,4 @@
+import 'package:evently_app/core/routes_manager/app_routes.dart';
 import 'package:evently_app/features/main_layout/tabs/favourite/favourite_tab.dart';
 import 'package:evently_app/features/main_layout/tabs/home_tab/home_tab.dart';
 import 'package:evently_app/features/main_layout/tabs/map/map_tab.dart';
@@ -26,7 +27,12 @@ class _MainLayoutState extends State<MainLayout> {
     );
   }
   FloatingActionButton _buildFad() {
-    return FloatingActionButton(onPressed: () {}, child: Icon(Icons.add));
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.pushNamed(context, AppRoutes.createEvent);
+      },
+      child: Icon(Icons.add),
+    );
   }
   BottomAppBar _buildNavBar() {
     return BottomAppBar(

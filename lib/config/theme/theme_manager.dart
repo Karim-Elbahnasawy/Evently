@@ -8,6 +8,7 @@ abstract class ThemeManager {
     useMaterial3: false,
     scaffoldBackgroundColor: ColorsManager.ofWhite,
     appBarTheme: AppBarTheme(
+      foregroundColor: ColorsManager.blue,
       backgroundColor: ColorsManager.ofWhite,
       centerTitle: true,
       titleTextStyle: TextStyle(
@@ -38,6 +39,12 @@ abstract class ThemeManager {
       prefixIconColor: ColorsManager.grey,
       suffixIconColor: ColorsManager.grey,
       labelStyle: TextStyle(color: ColorsManager.grey),
+      hintStyle: TextStyle(
+        color: ColorsManager.grey,
+        fontSize: 16,
+        fontStyle: FontStyle.normal,
+        decoration: TextDecoration.none,
+      ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16.r),
         borderSide: BorderSide(color: ColorsManager.grey),
@@ -132,6 +139,11 @@ abstract class ThemeManager {
         color: ColorsManager.black,
         fontSize: 20.sp,
         fontWeight: FontWeight.w700,
+      ),
+      displayLarge: GoogleFonts.inter(
+        color: ColorsManager.blue,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
       ),
     ),
   );
