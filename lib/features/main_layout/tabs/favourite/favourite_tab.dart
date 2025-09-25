@@ -37,14 +37,14 @@ class FavouriteTab extends StatelessWidget {
             child: ListView.separated(
               itemCount: 10,
               itemBuilder: (context, index) => EventItem(
-            event: EventModel(
-              category: CategoryModel.categoriesWithAll[3],
-              title: 'This is a Birthday Party ',
-              description: 'This is a Birthday Party ',
-              dateTime: DateTime.now(),
-              timeOfDay: TimeOfDay.now(),
-            ),
-          ),
+                event: EventModel(
+                  category: CategoryModel.categoriesWithAll[3],
+                  title: 'This is a Birthday Party ',
+                  description: 'This is a Birthday Party ',
+                  dateTime: DateTime.now(),
+                  timeOfDay: TimeOfDay.now(),
+                ),
+              ),
               separatorBuilder: (context, index) => SizedBox(height: 16.h),
             ),
           ),

@@ -123,6 +123,16 @@ abstract class ThemeManager {
         decoration: TextDecoration.underline,
         decorationColor: ColorsManager.blue,
       ),
+      labelSmall: GoogleFonts.inter(
+        color: ColorsManager.white,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+      ),
+      labelMedium: GoogleFonts.inter(
+        color: ColorsManager.black,
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w700,
+      ),
     ),
   );
   static final ThemeData dark = ThemeData();
