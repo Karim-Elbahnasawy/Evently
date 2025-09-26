@@ -3,8 +3,11 @@ import 'package:evently_app/core/resourses/colors_manager.dart';
 import 'package:evently_app/features/main_layout/tabs/profile_tab/drop_down_item.dart';
 import 'package:evently_app/features/main_layout/tabs/profile_tab/logout_button.dart';
 import 'package:evently_app/l10n/app_localizations.dart';
+import 'package:evently_app/providers/language_provider.dart';
+import 'package:evently_app/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class ProfileTab extends StatelessWidget {
   const ProfileTab({super.key});
@@ -12,6 +15,8 @@ class ProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    LanguageProvider languageProvider = Provider.of<LanguageProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -48,14 +53,28 @@ class ProfileTab extends StatelessWidget {
         SizedBox(height: 24.h),
         DropDownItem(
           label: appLocalizations.theme,
-          selectedItem: appLocalizations.light,
+          selectedItem: themeProvider.isDark
+              ? appLocalizations.dark
+              : appLocalizations.light,
           menuItems: [appLocalizations.light, appLocalizations.dark],
+          onChanged: (newTheme) {
+            themeProvider.changeAppTheme(
+              newTheme == appLocalizations.light
+                  ? ThemeMode.light
+                  : ThemeMode.dark,
+            );
+          },
         ),
         SizedBox(height: 16.h),
         DropDownItem(
           label: appLocalizations.language,
-          selectedItem: 'English',
+          selectedItem: languageProvider.isEnglish ? 'English' : 'عربى',
           menuItems: ['English', 'عربى'],
+          onChanged: (newLanguage) {
+            languageProvider.changeAppLanguage(
+              newLanguage == 'English' ? 'en' : 'ar',
+            );
+          },
         ),
         Spacer(flex: 7),
         LogoutButton(),
