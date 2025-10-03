@@ -15,4 +15,7 @@ extension DateTimeExtension on DateTime {
     DateFormat formater = DateFormat('dd');
     return formater.format(this);
   }
+  String get toFormatedTime{
+    return DateFormat('h:mm a').format(this);
+  }
 }

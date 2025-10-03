@@ -1,3 +1,4 @@
+import 'package:evently_app/core/extensions/date_time_extension.dart';
 import 'package:evently_app/core/resourses/assets_manager.dart';
 import 'package:evently_app/core/resourses/colors_manager.dart';
 import 'package:evently_app/core/widgets/custom_elvated_button.dart';
@@ -19,6 +20,8 @@ class CreateEvent extends StatefulWidget {
 class _CreateEventState extends State<CreateEvent> {
   late final TextEditingController _titleContoller;
   late final TextEditingController _descriptionContoller;
+  DateTime selectedDate = DateTime.now();
+  TimeOfDay selectedTime = TimeOfDay.now();
 
   @override
   void initState() {
@@ -85,19 +88,13 @@ class _CreateEventState extends State<CreateEvent> {
                   Icon(Icons.date_range),
                   SizedBox(width: 8.w),
                   Text(
-                    appLocalizations.event_date,
+                    selectedDate.toFormatedDate,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Spacer(),
                   CustomTextButton(
                     text: appLocalizations.choose_date,
-                    onTap: () {
-                      showDatePicker(
-                        context: context,
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime.now().add(Duration(days: 365)),
-                      );
-                    },
+                    onTap: _selectEventDate,
                   ),
                 ],
               ),
@@ -107,18 +104,13 @@ class _CreateEventState extends State<CreateEvent> {
                   Icon(Icons.timer_outlined),
                   SizedBox(width: 8.w),
                   Text(
-                    appLocalizations.event_time,
+                    selectedDate.toFormatedTime,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Spacer(),
                   CustomTextButton(
                     text: appLocalizations.choose_time,
-                    onTap: () {
-                      showTimePicker(
-                        context: context,
-                        initialTime: TimeOfDay.now(),
-                      );
-                    },
+                    onTap: _selectEventTime
                   ),
                 ],
               ),
@@ -173,5 +165,25 @@ class _CreateEventState extends State<CreateEvent> {
         ),
       ),
     );
+  }
+
+  void _selectEventDate() async {
+    selectedDate = await showDatePicker(
+      context: context,
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(Duration(days: 365)),
+    )?? selectedDate;
+    selectedDate = selectedDate.copyWith(hour: selectedTime.hour,minute: selectedTime.minute);
+    setState(() {
+      
+    });
+  }
+
+  void _selectEventTime() async{
+  selectedTime = await showTimePicker(context: context, initialTime: TimeOfDay.now())??selectedTime;
+  selectedDate = selectedDate.copyWith(hour: selectedTime.hour,minute: selectedTime.minute);
+  setState(() {
+    
+  });
   }
 }

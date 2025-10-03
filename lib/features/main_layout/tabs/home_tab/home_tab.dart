@@ -4,8 +4,11 @@ import 'package:evently_app/core/widgets/custom_event_item.dart';
 import 'package:evently_app/l10n/app_localizations.dart';
 import 'package:evently_app/models/category_model.dart';
 import 'package:evently_app/models/event_model.dart';
+import 'package:evently_app/providers/language_provider.dart';
+import 'package:evently_app/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
@@ -13,6 +16,8 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    LanguageProvider languageProvider = Provider.of<LanguageProvider>(context);
     return Column(
       children: [
         Container(
@@ -58,20 +63,34 @@ class HomeTab extends StatelessWidget {
                     ),
                     Spacer(),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        themeProvider.changeAppTheme(
+                          themeProvider.isDark
+                              ? ThemeMode.light
+                              : ThemeMode.dark,
+                        );
+                      },
                       icon: Icon(
-                        Icons.light_mode,
+                        themeProvider.isDark
+                            ? Icons.dark_mode
+                            : Icons.light_mode,
                         color: ColorsManager.ofWhite,
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        languageProvider.changeAppLanguage(
+                          languageProvider.isEnglish
+                              ? 'ar'
+                              :'en',
+                        );
+                      },
                       child: Card(
                         color: ColorsManager.ofWhite,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'EN',
+                           languageProvider.isEnglish? 'EN' :'Ar',
                             style: Theme.of(context).textTheme.headlineMedium,
                           ),
                         ),
