@@ -1,11 +1,18 @@
 import 'package:evently_app/core/resourses/colors_manager.dart';
+import 'package:evently_app/core/routes_manager/app_routes.dart';
 import 'package:evently_app/l10n/app_localizations.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LogoutButton extends StatelessWidget {
+class LogoutButton extends StatefulWidget {
   const LogoutButton({super.key});
 
+  @override
+  State<LogoutButton> createState() => _LogoutButtonState();
+}
+
+class _LogoutButtonState extends State<LogoutButton> {
   @override
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
@@ -21,7 +28,7 @@ class LogoutButton extends StatelessWidget {
             borderRadius: BorderRadiusGeometry.circular(16),
           ),
         ),
-        onPressed: () {},
+        onPressed: _logOut,
         child: Row(
           children: [
             Icon(Icons.logout_outlined),
@@ -31,5 +38,10 @@ class LogoutButton extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _logOut() {
+   FirebaseAuth.instance.signOut();
+    Navigator.pushReplacementNamed(context, AppRoutes.login);
   }
 }

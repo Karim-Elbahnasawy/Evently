@@ -1,12 +1,16 @@
 import 'package:evently_app/core/resourses/assets_manager.dart';
 import 'package:evently_app/core/resourses/validators.dart';
 import 'package:evently_app/core/routes_manager/app_routes.dart';
+import 'package:evently_app/core/utils/utils.dart';
 import 'package:evently_app/core/widgets/custom_elvated_button.dart';
 import 'package:evently_app/core/widgets/custom_text_form_field.dart';
 import 'package:evently_app/core/widgets/cutom_text_button.dart';
+import 'package:evently_app/firebase_service/firebase_service.dart';
 import 'package:evently_app/l10n/app_localizations.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -163,7 +167,28 @@ class _RegisterState extends State<Register> {
     });
   }
 
-  void _createAccount() {
+  void _createAccount() async {
     if (_formKey.currentState?.validate() == false) return;
+
+    try {
+      Utils.showLoading(context);
+      UserCredential userCredential = await FirebaseService.register(
+        _emailController.text,
+        _passwordController.text,
+      );
+      Utils.hideDialog(context);
+      Utils.showToastMessage('Account Created Successfully', Colors.green);
+      Navigator.pushReplacementNamed(context, AppRoutes.login);
+    } on FirebaseAuthException catch (e) {
+      Utils.hideDialog(context);
+      if (e.code == 'weak-password') {
+        Utils.showToastMessage('Password Is Too Weak', Colors.red);
+      } else if (e.code == 'email-already-in-use') {
+        Utils.showToastMessage('Email Is Already Used', Colors.red);
+      }
+    } catch (e) {
+      Utils.hideDialog(context);
+      Utils.showToastMessage('Failed Register', Colors.red);
+    }
   }
 }
